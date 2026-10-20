@@ -1,0 +1,24 @@
+{
+  "name": "dev3pack-week2-homework",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Ejercicio integrador: accounts, transacciones, Solana Kit y tokens SPL.",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "node --import tsx --test tests/infrastructure.test.ts",
+    "grade": "node --import tsx scripts/grade.ts",
+    "campus": "node --import tsx src/run.ts"
+  },
+  "dependencies": {
+    "@solana/kit": "8.5.0",
+    "@solana-program/system": "0.16.0",
+    "@solana-program/token": "0.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.0",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3"
+  }
+}

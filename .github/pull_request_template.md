@@ -1,16 +1,14 @@
 ## Entrega
 
 - Usuario de GitHub:
-- Archivo: `submissions/USUARIO.ts` o `submissions/USUARIO/solution.ts`
+- Carpeta: `submissions/USUARIO/`
 
 ## Verificación
 
-- [ ] Solo añadí o modifiqué mi archivo de entrega.
-- [ ] Usé código e identificadores en inglés y comentarios/respuestas en español.
-- [ ] `npm run check` pasa.
-- [ ] `npm run grade -- submissions/USUARIO.ts` pasa (adaptar ruta si usé subcarpeta).
-- [ ] `npm run campus -- submissions/USUARIO.ts --execute-local` pasa con mi nodo local.
-- [ ] Completé `reflection`, incluyendo evidencia y casos fallidos.
-- [ ] No incluí claves privadas, archivos `.env`, dependencias ni reportes como archivos adicionales.
+- [ ] Solo añadí archivos dentro de `submissions/USUARIO/`.
+- [ ] Completé los 5 TODOs de `accounts.ts` y `transactions.ts`.
+- [ ] `npx tsx submissions/USUARIO/main.ts` corre sin errores con mi nodo local.
+- [ ] Pegué la salida y respondí las preguntas en mi `README.md`.
+- [ ] No incluí `node_modules`, archivos `.env` ni claves privadas.
 
 Resultado o dificultad encontrada:

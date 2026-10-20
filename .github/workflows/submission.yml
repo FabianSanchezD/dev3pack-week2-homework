@@ -6,23 +6,21 @@ permissions:
   contents: read
   pull-requests: read
 jobs:
-  format:
+  folder:
     runs-on: ubuntu-latest
     steps:
-      # Se carga la regla desde el commit base; el PR no puede cambiar su propio validador.
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.base.sha }}
+      # Solo revisa que todos los archivos del PR estén en submissions/USUARIO/.
       - uses: actions/github-script@v7
         with:
           script: |
-            const { validateSubmission } = require(`${process.env.GITHUB_WORKSPACE}/scripts/submission-policy.cjs`);
+            const user = context.payload.pull_request.user.login;
+            const folder = `submissions/${user}/`;
             const files = await github.paginate(github.rest.pulls.listFiles, {
               ...context.repo, pull_number: context.issue.number, per_page: 100,
             });
-            try {
-              validateSubmission(files, context.payload.pull_request.user.login);
-              core.info('Formato válido. La corrección técnica y conceptual se revisa por separado.');
-            } catch (error) {
-              core.setFailed(error.message);
+            const outside = files.map(f => f.filename).filter(name => !name.startsWith(folder));
+            if (outside.length > 0) {
+              core.setFailed(`Solo podés cambiar archivos dentro de ${folder}. Fuera de lugar:\n${outside.join('\n')}`);
+            } else {
+              core.info(`Formato válido: todo está en ${folder}. El código se revisa a mano.`);
             }

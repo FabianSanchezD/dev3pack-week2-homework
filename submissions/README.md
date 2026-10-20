@@ -1,41 +1,38 @@
-# Cómo entregar tu solución
+# Cómo entregar tu tarea
 
-Cada estudiante hace un **pull request** a este repositorio. La entrega debe contener un único archivo TypeScript con su trabajo y llamarse según el usuario de GitHub del autor del PR.
+Cada estudiante entrega su trabajo con un **pull request** a este repositorio. Todo va dentro de **una carpeta con tu usuario exacto de GitHub** (con sus mayúsculas).
 
-## Dos formatos válidos
+## Estructura
 
-Para el usuario de ejemplo `octocat`, elegí uno:
-
-```text
-submissions/octocat.ts
-```
+Para el usuario de ejemplo `octocat`:
 
 ```text
-submissions/octocat/solution.ts
+submissions/
+└── octocat/
+    ├── README.md          # Salida de tu ejecución y respuestas
+    ├── accounts.ts        # TODO 1 y 2
+    ├── transactions.ts    # TODO 3, 4 y 5
+    └── main.ts            # Sin cambios
 ```
-
-La segunda opción permite una subcarpeta, pero sigue admitiendo **solo un archivo** dentro. No se aceptan ambos formatos en el mismo PR. Usá el usuario exacto, con sus mayúsculas. En tu archivo deben estar las diez funciones exportadas y el objeto `reflection`, con respuestas en español y evidencia resumida de tu ejecución.
 
 ## Pasos
 
-1. Hacé un fork del repo y cloná tu fork.
-2. Creá una rama: `git switch -c feat/campus-credits`.
-3. Copiá la plantilla: `cp starter/solution.ts submissions/TU_USUARIO.ts`.
-4. Completá el código en inglés y los comentarios/respuestas en español.
-5. Ejecutá `npm run check`, `npm test` y `npm run grade -- submissions/TU_USUARIO.ts`.
-6. Con tu nodo local iniciado, ejecutá `npm run campus -- submissions/TU_USUARIO.ts --execute-local`.
-7. Leé `reports/latest.json` y resumí los resultados, firmas locales, saldo final y errores esperados en `reflection.evidence`. Las firmas locales solo se consultan contra el mismo nodo mientras conserve el ledger; no aparecen en el Explorer público de devnet.
-8. Añadí únicamente tu archivo, hacé un commit y subí la rama a tu fork.
-9. Abrí un pull request hacia la rama `main` del repositorio original y completá su checklist.
+1. Hacé un fork de [este repositorio](https://github.com/FabianSanchezD/dev3pack-week2-homework) y cloná **tu fork**.
+2. Creá una rama: `git checkout -b feat/TU_USUARIO`.
+3. Copiá la plantilla: `cp -r starter submissions/TU_USUARIO`.
+4. Completá los TODOs y corré `npx tsx submissions/TU_USUARIO/main.ts` con tu nodo local encendido.
+5. En tu `README.md`, pegá la salida y respondé las preguntas.
+6. Hacé commit, subí la rama a tu fork y abrí un pull request hacia `main` del repositorio original.
+7. Completá el checklist de la plantilla del PR.
 
-Si elegís subcarpeta, primero ejecutá `mkdir -p submissions/TU_USUARIO` y copiá la plantilla a `submissions/TU_USUARIO/solution.ts`. Usá esa ruta en todos los comandos posteriores. La plantilla solo importa paquetes, así que funciona en ambos formatos.
+## Qué no debe incluir tu PR
 
-## Qué no debe cambiar tu PR
+- Cambios fuera de `submissions/TU_USUARIO/`.
+- `node_modules` ni archivos `.env`.
+- Claves privadas o wallets exportadas (por ejemplo, `id.json` o keypairs).
 
-Conservá `submissions/.gitkeep` y este README. No modifiqués archivos de otros estudiantes, la plantilla, la configuración ni las pruebas. No incluyás `node_modules`, archivos `.env`, claves privadas, wallets exportadas, PDF, capturas ni el reporte JSON como archivos adicionales. Podés pegar información pública del reporte como texto dentro de `reflection`.
-
-El control automático del PR comprueba **solo el formato de entrega**. Un check verde no significa que el ejercicio esté aprobado: se revisan la ejecución técnica y las respuestas conceptuales.
+El check automático del PR solo revisa que tus archivos estén en la carpeta correcta. El código y las respuestas se revisan a mano.
 
 ## Si te piden cambios
 
-Editá tu mismo archivo y añadí otro commit a la misma rama; el PR se actualiza. No abras otro PR ni cambies de formato de entrega. Si ya elegiste un formato en una entrega aceptada, mantenelo en futuras correcciones.
+Agregá nuevos commits a la misma rama; el PR se actualiza solo. No abras otro PR.

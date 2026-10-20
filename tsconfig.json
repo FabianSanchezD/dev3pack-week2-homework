@@ -9,5 +9,5 @@
     "types": ["node"],
     "allowImportingTsExtensions": true
   },
-  "include": ["src/**/*.ts", "starter/**/*.ts", "scripts/**/*.ts", "tests/**/*.ts", "submissions/**/*.ts"]
+  "include": ["starter/**/*.ts", "submissions/**/*.ts"]
 }

@@ -1,12 +1,8 @@
 node_modules/
 .env
 .env.*
-!.env.example
 *.keypair.json
 id.json
 test-ledger/
 .surfpool/
-surfnet.sqlite*
-reports/
 .DS_Store
-coverage/

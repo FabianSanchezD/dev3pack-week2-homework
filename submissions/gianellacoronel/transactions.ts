@@ -55,5 +55,15 @@ export async function buildTransaction(
   //   3. setTransactionMessageLifetimeUsingBlockhash(lifetime, ...)
   //   4. appendTransactionMessageInstructions(instructions, ...)
   // Al final devolvé signTransactionMessageWithSigners(mensaje).
-  throw new Error("TODO 5: implementar buildTransaction");
+  const transactionMessage = pipe(
+    createTransactionMessage({ version: 0 }),
+    (tx) => setTransactionMessageFeePayerSigner(feePayer, tx),
+    (tx) => setTransactionMessageLifetimeUsingBlockhash(lifetime, tx),
+    (tx) => appendTransactionMessageInstructions(instructions, tx),
+  );
+
+  const signedTransaction =
+    await signTransactionMessageWithSigners(transactionMessage);
+
+  return signedTransaction;
 }

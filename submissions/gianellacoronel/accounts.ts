@@ -27,5 +27,25 @@ export async function getAccountSummary(
   // - Si value es null, la cuenta no existe: exists=false, owner=null, lamports=0n, executable=false, dataLength=0.
   // - Si existe, devolvé owner, lamports, executable y el tamaño de data en bytes.
   // Pista: data llega como [texto, 'base64']; Buffer.from(texto, 'base64').length da los bytes.
-  throw new Error("TODO 2: implementar getAccountSummary");
+  const { value } = await rpc
+    .getAccountInfo(address, { encoding: "base64" })
+    .send();
+
+  if (!value) {
+    return {
+      exists: false,
+      owner: null,
+      lamports: 0n,
+      executable: false,
+      dataLength: 0,
+    };
+  }
+
+  return {
+    exists: true,
+    owner: value.owner,
+    lamports: value.lamports,
+    executable: value.executable,
+    dataLength: Buffer.from(value.data[0], "base64").length,
+  };
 }

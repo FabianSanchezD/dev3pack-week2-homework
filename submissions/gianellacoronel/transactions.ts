@@ -1,4 +1,12 @@
+import { getTransferSolInstruction } from "@solana-program/system";
 import {
+  appendTransactionMessageInstructions,
+  createTransactionMessage,
+  pipe,
+  setTransactionMessageFeePayer,
+  setTransactionMessageFeePayerSigner,
+  setTransactionMessageLifetimeUsingBlockhash,
+  signTransactionMessageWithSigners,
   type Address,
   type Blockhash,
   type Instruction,
@@ -27,7 +35,13 @@ export function createTransferInstruction(
 ): Instruction {
   // TODO 4: creá la instrucción del System Program que transfiere `amount` lamports de `from` a `to`.
   // Pista: getTransferSolInstruction de '@solana-program/system'.
-  throw new Error("TODO 4: implementar createTransferInstruction");
+  const transferInstruction = getTransferSolInstruction({
+    source: from,
+    destination: to,
+    amount: amount,
+  });
+
+  return transferInstruction;
 }
 
 export async function buildTransaction(
